@@ -1,7 +1,9 @@
 # todolist
 
 > dynamic todo list
-> tutoriel from https://www.grafikart.fr/formations/vuejs/tp-todolist
+> tutoriel from https://www.grafikart.fr/formations/vuejs/tp-todolist 
+
+![alt text](./src/assets/todo.JPG)
 
 ## Build Setup
 

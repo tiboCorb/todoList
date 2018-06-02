@@ -16,7 +16,7 @@
         </div>
         <div>
             <footer class="footer">
-                <span class="todo-count"><strong>{{remaning}}</strong></span>
+                <span class="todo-count"> Tâche à faire <strong>{{remaning}}</strong></span>
             </footer>
         </div>
     </section>
