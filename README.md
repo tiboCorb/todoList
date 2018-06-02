@@ -1,6 +1,7 @@
 # todolist
 
 > dynamic todo list
+> tutoriel from https://www.grafikart.fr/formations/vuejs/tp-todolist
 
 ## Build Setup
 
