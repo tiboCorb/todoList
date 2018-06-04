@@ -7,13 +7,13 @@
         <div class="main">
           <input type="checkbox" class='toggle-all' v-model="allDone">
             <ul class="todo-list">
-                <li v-for="todo in filtered" :key="todo.name" class="todo " :class="{ completed :todo.completed, editing : todo === editing}">
+                <li v-for="todo in filtered" :key="getIndex(todo)" class="todo " :class="{ completed :todo.completed, editing : todo === editing}">
                     <div class="view">
                         <input class="toggle" type="checkbox" v-model="todo.completed">
                         <label @dblclick="editTodo(todo)">{{todo.name}}</label>
                         <button class="destroy" @click.prevent="deleteTodo(todo)"></button>
                     </div>
-                      <input type="text" class="edit" v-model="todo.name" @keyup.enter="doneEdit" v-focus="todo === editing">
+                      <input type="text" class="edit" v-model="todo.name" @keyup.enter="doneEdit" @blur="doneEdit" @keyup.esc="cancelEdit" v-focus="todo === editing">
                 </li>
             </ul>
         </div>
@@ -41,10 +41,18 @@ export default {
       }],
       newTodo: '',
       filter: 'all',
-      editing: null
+      editing: null,
+      oldTodo: ''
     }
   },
   methods: {
+    cancelEdit (todo) {
+      this.editing.name = this.oldTodo
+      this.editing = null
+    },
+    getIndex (todo) {
+      return this.todos.indexOf(todo)
+    },
     doneEdit () {
       this.editing = null
     },
@@ -55,6 +63,7 @@ export default {
       this.todos = this.todos.filter(todo => !todo.completed)
     },
     editTodo (todo) {
+      this.oldTodo = todo.name
       this.editing = todo
     },
     addTodo () {
@@ -95,7 +104,6 @@ export default {
   },
   directives: {
     focus (el, value) {
-      console.log(value)
       if (value) {
         el.focus()
       }
